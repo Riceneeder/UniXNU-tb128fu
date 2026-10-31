@@ -1144,11 +1144,12 @@ bool naMetal(Session &s) {
     if (!accelerator->init()) {accelerator->release(); return stop(kIOReturnError);}
     // The two keys the original _MTLRegisterDevices helper reads (the plugin name is ours, no Apple device identity is claimed),
     // and the processes whose opens of this accelerator the kernel grants in place of the sandbox verdict
-    // (patches/xnu/zzw-native-adreno-sandbox-grant.patch): the render server, and the two that crashed in CoreImage's OpenGL ES path
-    // without a Metal device (iconservicesagent, and Settings' Accessibility page through MobileIcons; tb128fu-017/034/042). The GPU
-    // addon's NativeAdrenoMetal.clients names the same two (make-gpu-addon.py --clients).
+    // (patches/xnu/zzw-native-adreno-sandbox-grant.patch): the render server, the two that crashed in CoreImage's OpenGL ES path
+    // without a Metal device (iconservicesagent, and Settings' Accessibility page through MobileIcons; tb128fu-017/034/042), and
+    // PosterBoard, which draws the wallpaper and the widgets (tb128fu-096: it never asked for the device without this grant). The GPU
+    // addon's NativeAdrenoMetal.clients names the same three (make-gpu-addon.py --clients).
     accelerator->setProperty("MetalPluginName", "NativeAdrenoMetal");
-    accelerator->setProperty("NativeSandboxGrantProcess", "backboardd,iconservicesagent,Preferences");
+    accelerator->setProperty("NativeSandboxGrantProcess", "backboardd,iconservicesagent,Preferences,PosterBoard");
     accelerator->setProperty("MetalPluginClassName", "NativeAdrenoMetalDevice");
     // Turnip's options for this board, which replace the plugin's default "sysmem,nocb" (NativeAdrenoMetalPlugin.mm
     // applyBoardTurnipDebug). Turnip reports Vulkan 1.0 on a6xx gen1 (no hardware multiview) and metal2vulkan needs 1.2: noconform
