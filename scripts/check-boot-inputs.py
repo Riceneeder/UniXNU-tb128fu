@@ -18,7 +18,7 @@ import sys
 
 OS_UUID = '04769D26-2CA0-4825-B443-E2E5F88300F2'
 SYSTEMOS_UUID = '8846FE78-2910-4297-AF97-D59BB6F8FC16'
-DATA_UUID = '73F1FA24-4189-446D-96D4-FB6324EBE955'
+DATA_UUID = '1191290C-A628-4767-B286-9AB1EB43134F'
 TRUST_PIN = '7416ca4f8377146626bb284e2133c76bee6cb4e3ee0af5d648b186235a7323a7'
 BOOT_LIMIT = 96 * 1024 * 1024
 DIGEST_INFO = bytes.fromhex('3031300d060960864801650304020105000420')
@@ -160,7 +160,7 @@ def main():
     payload = args.payload or out / 'payload/payload.img'
     key = args.key or out / 'tree/build/verified-root-os/trusted-key.bin'
     anchor = key.read_bytes()
-    if hashlib.sha256(anchor).hexdigest() != '70a5ea346d2d779a7ef43eb4ed8b17f54488e160d8c2a6d6420969664e3ae798':
+    if hashlib.sha256(anchor).hexdigest() != 'f5e56e65b4935c850f89017a47a6eac9db6f7dd9011df5d9be72ae406c0e16e1':
         fail('the owner anchor is not the pinned key')
     check_userdata(userdata, anchor, {'OS': OS_UUID, 'SystemOS': SYSTEMOS_UUID})
 

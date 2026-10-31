@@ -58,7 +58,7 @@ archives = [
   "build-platform-power.py",
   # The 395-byte owner root anchor and the XNU crypto adapter; the signed envelopes are in userdata,
   # built with `unixnu build userdata --root-policy OS=... --root-policy SystemOS=...`.
-  "build-verified-root-key.py --pin 70a5ea346d2d779a7ef43eb4ed8b17f54488e160d8c2a6d6420969664e3ae798",
+  "build-verified-root-key.py --pin f5e56e65b4935c850f89017a47a6eac9db6f7dd9011df5d9be72ae406c0e16e1",
   # Adreno610, the Adreno 610 half of NativeAdreno (no GMU), with the SMMU and PM4 kits (CONFIG_XNU_NATIVE_ADRENO), then the
   # staged accelerator class added to the same archive.
   "build-adreno610.py",
