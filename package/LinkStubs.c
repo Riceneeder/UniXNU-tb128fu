@@ -20,6 +20,17 @@ __attribute__((weak)) struct IOMemoryDescriptor *native_gop_handoff_memory(void)
 {
     return 0;
 }
+__attribute__((weak)) int native_gop_handoff_call(unsigned int op, void *task, const void *in,
+                                                  unsigned long in_size, void *out, unsigned long out_size)
+{
+    (void)op;
+    (void)task;
+    (void)in;
+    (void)in_size;
+    (void)out;
+    (void)out_size;
+    return 0;
+}
 __attribute__((weak)) char tb128fu_gpu_dvfs[2][120];
 __attribute__((weak)) char tb128fu_ddr_rows[3][120];
 __attribute__((weak)) char tb128fu_rpm_rows[3][120];
